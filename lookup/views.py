@@ -1,17 +1,12 @@
 from django.shortcuts import render
 
 def home(request):
-	return render(request, 'home.html', {})
-
-def about(request):
-	return render(request, 'about.html', {})	
-"""	
 	import json
 	import requests
 
 	if request.method == "POST":
 		zipcode = request.POST['zipcode']
-		api_request = requests.get()
+		api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=' + zipcode + '&distance=5&API_KEY=7350F3D0-45A3-49C6-A59A-DA811A482353")
 
 		try:
 			api = json.loads(api_request.content)
@@ -49,7 +44,7 @@ def about(request):
 		
 
 	else:
-		api_request = requests.get("http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY=96A38DFD-5C56-4740-AD99-E38C0C855A1B")
+		api_request = requests.get("https://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=89129&distance=5&API_KEY=7350F3D0-45A3-49C6-A59A-DA811A482353")
 
 		try:
 			api = json.loads(api_request.content)
@@ -86,4 +81,4 @@ def about(request):
 
 def about(request):
 	return render(request, 'about.html', {})
-"""	
+	
